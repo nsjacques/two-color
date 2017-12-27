@@ -36,12 +36,20 @@ import java.io.*;
 public class TwoColorDriver {
 	public static void main(String[] args) throws FileNotFoundException{
 	
-		//String filename = args[0];
-		String filename = "largegraph1.txt";
+		String filename = "";
+
+		if (args[0].equals("-p") || args[0].equals("--print"))
+			filename = args[1];
+		else 
+			filename = args[0];
 		
 		TCDecider color = new TCDecider();
 		
 		color.checkTC(filename);
+
+		if (args[0].equals("-p") || args[0].equals("--print")){
+			color.printResult();
+		}
 		
 	}
 }

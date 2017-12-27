@@ -19,6 +19,8 @@ public class TCDecider {
 	AdjacencyList AL;
 	Node oddCycleNode1;
 	Node oddCycleNode2;
+	Boolean twoColorable;
+	Node cycleHead = null;
 	
 	public TCDecider(){
 	}
@@ -33,13 +35,13 @@ public class TCDecider {
 		
 		
 		if (result == -1){
+			twoColorable = false;
 			System.out.println("No");
-			Node a = findCycle();//get the odd-cycle's head
-			printCycle(a);//print the odd cycle
+			Node cycleHead = findCycle();//get the odd-cycle's head
 		}
 		else{
+			twoColorable = true;
 			System.out.println("Yes");
-			TCToString();//Two-colorable graph to string
 		}
 	}
 
@@ -201,5 +203,12 @@ public class TCDecider {
 	// Called iff it is two-colorable
 	private void TCToString(){
 		AL.printListColored();
+	}
+
+	public void printResult(){
+		if(twoColorable)
+			TCToString();
+		else
+			printCycle(cycleHead);
 	}
 }
